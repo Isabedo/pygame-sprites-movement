@@ -8,7 +8,17 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Spritesheets")
 
+
+
 clock = pygame.time.Clock()
+
+spritesheet=pygame.image.load("assets/Goblin/Run.png"). convert_alpha()
+
+num_frames= 8
+sprite =Sprite(spritesheet,num_frames, SCREEN_WIDTH//2, SCREEN_HEIGHT//2, 0.1)
+
+all_sprites =pygame.sprite.Group()
+all_sprites.add(sprite)
 
 run = True
 while run:
@@ -16,8 +26,11 @@ while run:
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       run = False
+  
+  all_sprites.update()
      # update background
   screen.fill(CUSTOM_COLOR)
+  all_sprites.draw(screen)
   
   pygame.display.update()
 
